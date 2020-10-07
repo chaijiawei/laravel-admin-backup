@@ -43,7 +43,11 @@ class TestCase extends BaseTestCase
         }
         $this->app['config']->set('admin', $adminConfig);
 
-        Artisan::call('vendor:publish', ['--provider' => 'Chaijiawei\LaravelAdminBackup\ServiceProvider']);
+        Artisan::call('vendor:publish', [
+                '--provider' => 'Chaijiawei\LaravelAdminBackup\ServiceProvider',
+                '--force' => true,
+            ]
+        );
 
         $this->copyEnv();
         $this->migrateTestTables();

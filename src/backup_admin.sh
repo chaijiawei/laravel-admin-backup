@@ -20,5 +20,10 @@ else
   sqlFile=admin.sql
 fi
 
-mysqldump -u"${DB_USERNAME}" -p"${DB_PASSWORD}" -t "${DB_DATABASE}" ${admin_tables[*]} > ${sqlFile}
+if [ -n "${DB_PASSWORD}" ]
+then
+    mysqldump -u"${DB_USERNAME}" -p"${DB_PASSWORD}" -t "${DB_DATABASE}" ${admin_tables[*]} > ${sqlFile}
+else
+    mysqldump -u"${DB_USERNAME}" -t "${DB_DATABASE}" ${admin_tables[*]} > ${sqlFile}
+fi
 

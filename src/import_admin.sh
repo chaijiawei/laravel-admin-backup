@@ -11,5 +11,10 @@ fi
 
 if test -e ${sqlFile}
 then
-  mysql -u"${DB_USERNAME}" -p"${DB_PASSWORD}" "${DB_DATABASE}" < "${sqlFile}"
+    if [ -n "${DB_PASSWORD}" ]
+    then
+        mysql -u"${DB_USERNAME}" -p"${DB_PASSWORD}" "${DB_DATABASE}" < "${sqlFile}"
+    else
+        mysql -u"${DB_USERNAME}" "${DB_DATABASE}" < "${sqlFile}"
+    fi
 fi
