@@ -1,0 +1,37 @@
+{
+    "name": "chaijiawei\/laravel-admin-backup",
+    "description": "Package description here.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "chaijiawei",
+            "email": "jiawei_chai@126.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.0.0",
+        "laravel/framework": ">=5.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Chaijiawei\\LaravelAdminBackup\\": "src"
+        }
+    },
+    "require-dev": {
+        "laravel/laravel": "^5.5|^6.0|^7.0|^8.0",
+        "phpunit/phpunit": "^6.0",
+        "fzaninotto/faker": "^1.9"
+    },
+    "autoload-dev": {
+        "classmap": [
+            "tests/TestCase.php"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Chaijiawei\\LaravelAdminBackup\\ServiceProvider"
+            ]
+        }
+    }
+}
