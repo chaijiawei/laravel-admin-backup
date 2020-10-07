@@ -12,12 +12,12 @@ class AdminBackupTest extends TestCase
         $this->assertTrue(true);
     }
 
-//    public function testNoShellFile()
-//    {
-//        File::delete(base_path('backup_admin.sh'));
-//        Artisan::call('admin:backup-database');
-//        $this->assertSame('php artisan vendor:publish to publish shell', trim(Artisan::output()));
-//    }
+    public function testNoShellFile()
+    {
+        File::delete(base_path('backup_admin.sh'));
+        Artisan::call('admin:backup-database');
+        $this->assertSame('php artisan vendor:publish to publish shell', trim(Artisan::output()));
+    }
 //
 //    public function testNoConfig()
 //    {
