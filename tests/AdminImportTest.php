@@ -34,25 +34,25 @@ class AdminImportTest extends TestCase
         $this->assertSame('laravel-admin config not find', trim(Artisan::output()));
     }
 
-    public function testTableHaveData()
-    {
-        $this->seedUsersTable();
-        $consoleCommand = new AdminImportDatabase;
-        $consoleCommand->setLaravel($this->app);
-        $testCommand = new CommandTester($consoleCommand);
-
-        //not to force import, and exit
-        $testCommand->setInputs(['no']);
-        $testCommand->execute([]);
-        $output = $testCommand->getDisplay();
-        $this->assertRegExp('/.*?nothing to import.*?/', $output);
-
-        //force import
-        $testCommand->setInputs(['yes']);
-        $testCommand->execute([]);
-        $output = $testCommand->getDisplay();
-        $this->assertRegExp('/.*?import success.*?/', $output);
-    }
+//    public function testTableHaveData()
+//    {
+//        $this->seedUsersTable();
+//        $consoleCommand = new AdminImportDatabase;
+//        $consoleCommand->setLaravel($this->app);
+//        $testCommand = new CommandTester($consoleCommand);
+//
+//        //not to force import, and exit
+//        $testCommand->setInputs(['no']);
+//        $testCommand->execute([]);
+//        $output = $testCommand->getDisplay();
+//        $this->assertRegExp('/.*?nothing to import.*?/', $output);
+//
+//        //force import
+//        $testCommand->setInputs(['yes']);
+//        $testCommand->execute([]);
+//        $output = $testCommand->getDisplay();
+//        $this->assertRegExp('/.*?import success.*?/', $output);
+//    }
 
     public function testParameter()
     {

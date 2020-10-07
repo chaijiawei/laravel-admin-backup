@@ -26,18 +26,18 @@ class AdminBackupTest extends TestCase
         $this->assertSame('laravel-admin config not find', trim(Artisan::output()));
     }
 
-    public function testTableIsEmpty()
-    {
-        DB::table(config('admin.database.users_table'))->truncate();
-        $consoleCommand = new AdminBackupDatabase;
-        $consoleCommand->setLaravel($this->app);
-        $testCommand = new CommandTester($consoleCommand);
-        $testCommand->setInputs(['no']);
-        $testCommand->execute([]);
-
-        $output = $testCommand->getDisplay();
-        $this->assertRegExp('/.*?nothing to backup.*?/', $output);
-    }
+//    public function testTableIsEmpty()
+//    {
+//        DB::table(config('admin.database.users_table'))->truncate();
+//        $consoleCommand = new AdminBackupDatabase;
+//        $consoleCommand->setLaravel($this->app);
+//        $testCommand = new CommandTester($consoleCommand);
+//        $testCommand->setInputs(['no']);
+//        $testCommand->execute([]);
+//
+//        $output = $testCommand->getDisplay();
+//        $this->assertRegExp('/.*?nothing to backup.*?/', $output);
+//    }
 
     public function testTableHaveData()
     {
