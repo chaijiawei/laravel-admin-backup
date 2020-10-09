@@ -1,6 +1,6 @@
 {
-    "name": "chaijiawei\/laravel-admin-backup",
-    "description": "Package description here.",
+    "name": "chaijiawei/laravel-admin-backup",
+    "description": "backup tables for laravel-admin",
     "license": "MIT",
     "authors": [
         {
