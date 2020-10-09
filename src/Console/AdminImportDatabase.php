@@ -42,31 +42,35 @@ class AdminImportDatabase extends Command
     {
         $shell = base_path('import_admin.sh');
         $sqlFile = base_path($this->option('file'));
-        if(! file_exists($shell)) {
+        if (! file_exists($shell)) {
             $this->warn('php artisan vendor:publish to publish shell');
+
             return;
         }
-        if(! file_exists($sqlFile)) {
-            $this->warn( "you have no $sqlFile to import");
+        if (! file_exists($sqlFile)) {
+            $this->warn("you have no $sqlFile to import");
+
             return;
         }
-        if(! config('admin.database.users_table')) {
+        if (! config('admin.database.users_table')) {
             $this->warn('laravel-admin config not find');
+
             return;
         }
-        if(DB::table(config('admin.database.users_table'))->count() > 0) {
+        if (DB::table(config('admin.database.users_table'))->count() > 0) {
             $isForce = $this->confirm('admin table already have data, force cover？');
-            if(! $isForce) {
+            if (! $isForce) {
                 $this->info('nothing to import');
+
                 return;
             }
 
             //truncate admin table except log table
-            $tables = collect(config('admin.database'))->filter(function($v, $k) {
+            $tables = collect(config('admin.database'))->filter(function ($v, $k) {
                 return Str::endsWith($k, 'table') &&
                         ! Str::endsWith($v, 'log');
             })->all();
-            foreach($tables as $table) {
+            foreach ($tables as $table) {
                 DB::table($table)->truncate();
             }
         }

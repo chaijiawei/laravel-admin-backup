@@ -1,13 +1,13 @@
 <?php
+
+use Chaijiawei\LaravelAdminBackup\Console\AdminBackupDatabase;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Symfony\Component\Console\Tester\CommandTester;
-use Chaijiawei\LaravelAdminBackup\Console\AdminBackupDatabase;
-use Illuminate\Support\Facades\DB;
 
 class AdminBackupTest extends TestCase
 {
-
     public function testNoShellFile()
     {
         File::delete(base_path('backup_admin.sh'));
@@ -48,7 +48,7 @@ class AdminBackupTest extends TestCase
         $sqlName = 'test.sql';
         $file = base_path($sqlName);
         File::delete($file);
-        Artisan::call('admin:backup-database', ["--file" => $sqlName]);
+        Artisan::call('admin:backup-database', ['--file' => $sqlName]);
         $this->assertTrue(File::exists($file));
     }
 }
