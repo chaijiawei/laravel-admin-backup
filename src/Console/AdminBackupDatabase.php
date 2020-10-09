@@ -40,18 +40,21 @@ class AdminBackupDatabase extends Command
     public function handle()
     {
         $shell = base_path('backup_admin.sh');
-        if(! file_exists($shell)) {
+        if (! file_exists($shell)) {
             $this->warn('php artisan vendor:publish to publish shell');
+
             return;
         }
-        if(! config('admin.database.users_table')) {
+        if (! config('admin.database.users_table')) {
             $this->warn('laravel-admin config not find');
+
             return;
         }
-        if(DB::table(config('admin.database.users_table'))->count() <= 0) {
+        if (DB::table(config('admin.database.users_table'))->count() <= 0) {
             $isForce = $this->confirm('admin table is empty, are you backup？');
-            if(! $isForce) {
+            if (! $isForce) {
                 $this->info('nothing to backup');
+
                 return;
             }
         }

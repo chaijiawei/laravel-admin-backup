@@ -1,14 +1,13 @@
 <?php
 
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Artisan;
 use Chaijiawei\LaravelAdminBackup\Console\AdminImportDatabase;
-use Symfony\Component\Console\Tester\CommandTester;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
+use Symfony\Component\Console\Tester\CommandTester;
 
 class AdminImportTest extends TestCase
 {
-
     public function testNoShellFile()
     {
         File::delete(base_path('import_admin.sh'));
@@ -63,14 +62,14 @@ class AdminImportTest extends TestCase
 
         //first backup
         $this->seedUsersTable();
-        Artisan::call('admin:backup-database', ["--file" => $sqlName]);
+        Artisan::call('admin:backup-database', ['--file' => $sqlName]);
         $this->assertSame('backup success', trim(Artisan::output()));
 
         //clear table
         DB::table(config('admin.database.users_table'))->truncate();
 
         //import
-        Artisan::call('admin:import-database', ["--file" => $sqlName]);
+        Artisan::call('admin:import-database', ['--file' => $sqlName]);
         $this->assertSame('import success', trim(Artisan::output()));
     }
 
