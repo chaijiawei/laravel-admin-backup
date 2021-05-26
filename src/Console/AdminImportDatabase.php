@@ -84,11 +84,12 @@ class AdminImportDatabase extends Command
 
     public function hasAnyData($tables)
     {
-        foreach($tables as $table) {
-            if(DB::table($table)->count() > 0) {
+        foreach ($tables as $table) {
+            if (DB::table($table)->count() > 0) {
                 return true;
             }
         }
+
         return false;
     }
 }
