@@ -57,7 +57,13 @@ class AdminImportDatabase extends Command
 
             return;
         }
-        if (DB::table(config('admin.database.users_table'))->count() > 0) {
+
+        //get tables except log
+        $tables = collect(config('admin.database'))->filter(function ($v, $k) {
+            return Str::endsWith($k, 'table') &&
+                ! Str::endsWith($v, 'log');
+        })->all();
+        if ($this->hasAnyData($tables)) {
             $isForce = $this->confirm('admin table already have data, force cover？');
             if (! $isForce) {
                 $this->info('nothing to import');
@@ -65,11 +71,7 @@ class AdminImportDatabase extends Command
                 return;
             }
 
-            //truncate admin table except log table
-            $tables = collect(config('admin.database'))->filter(function ($v, $k) {
-                return Str::endsWith($k, 'table') &&
-                        ! Str::endsWith($v, 'log');
-            })->all();
+            //truncate admin tables
             foreach ($tables as $table) {
                 DB::table($table)->truncate();
             }
@@ -78,5 +80,15 @@ class AdminImportDatabase extends Command
         $dir = base_path();
         system("cd $dir; bash $shell $sqlFile");
         $this->info('import success');
+    }
+
+    public function hasAnyData($tables)
+    {
+        foreach($tables as $table) {
+            if(DB::table($table)->count() > 0) {
+                return true;
+            }
+        }
+        return false;
     }
 }

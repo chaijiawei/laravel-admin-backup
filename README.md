@@ -17,24 +17,24 @@ so I need to backup and import data for laravel-admin, the plugin is for this st
 ## Installing
 
 ```shell
-$ composer require chaijiawei/laravel-admin-backup
+composer require chaijiawei/laravel-admin-backup
 ```
 
 ## Usage
 
 publish assets
 ```shell
-$ php artisan vendor:publish --provider="Chaijiawei\LaravelAdminBackup\ServiceProvider"
+php artisan vendor:publish --provider="Chaijiawei\LaravelAdminBackup\ServiceProvider"
 ```
 
 backp admin table
 ```shell
-$ php artisan admin:backup-database
+php artisan admin:backup-database
 ```
 
 import data to admin table
 ```shell
-$ php artisan admin:import-database
+php artisan admin:import-database
 ```
 
 ## License
