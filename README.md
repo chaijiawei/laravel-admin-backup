@@ -14,7 +14,7 @@ so I need to backup and import data for laravel-admin, the plugin is for this st
 * PHP >= 7.0.0
 * Laravel >= 5.5.0
 
-## Installing
+## Installing 
 
 ```shell
 composer require chaijiawei/laravel-admin-backup
